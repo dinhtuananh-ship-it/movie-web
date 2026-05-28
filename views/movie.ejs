@@ -1,0 +1,43 @@
+<%- include("partials/header") %>
+
+<div class="watch-page">
+
+    <div class="video-container">
+
+        <iframe
+            width="100%"
+            height="700"
+            src="<%= movie.video %>"
+            title="<%= movie.title %>"
+            frameborder="0"
+            allowfullscreen
+        ></iframe>
+
+    </div>
+
+    <div class="movie-details">
+
+        <h1>
+
+            <%= movie.title %>
+
+        </h1>
+
+        <p>
+
+            <%= movie.description %>
+
+        </p>
+
+        <p>
+
+            Category:
+            <%= movie.category_name %>
+
+        </p>
+
+    </div>
+
+</div>
+
+<%- include("partials/footer") %>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Add Movie</title>
+
+    <link
+        rel="stylesheet"
+        href="/css/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    >
+
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+    <!-- SIDEBAR -->
+
+    <div class="sidebar">
+
+        <div>
+
+            <h1 class="admin-logo">
+
+                MOVIE ADMIN
+
+            </h1>
+
+            <a href="/admin">
+
+                <i class="fa fa-chart-line"></i>
+
+                Dashboard
+
+            </a>
+
+            <a href="/admin/add-movie">
+
+                <i class="fa fa-plus"></i>
+
+                Add Movie
+
+            </a>
+
+            <a href="/">
+
+                <i class="fa fa-house"></i>
+
+                Website
+
+            </a>
+
+        </div>
+
+        <a
+            href="/logout"
+            class="logout-btn"
+        >
+
+            <i class="fa fa-right-from-bracket"></i>
+
+            Logout
+
+        </a>
+
+    </div>
+
+    <!-- CONTENT -->
+
+    <div class="admin-content">
+
+        <!-- TOPBAR -->
+
+        <div class="admin-topbar">
+
+            <div>
+
+                <h2>
+
+                    Add Movie
+
+                </h2>
+
+                <p>
+
+                    Upload new content to platform
+
+                </p>
+
+            </div>
+
+            <div class="admin-user-box">
+
+                <i class="fa fa-user"></i>
+
+                <% if(typeof user !== 'undefined' && user){ %>
+
+                    <span>
+
+                        <%= user.name %>
+
+                    </span>
+
+                <% } else { %>
+
+                    <span>
+
+                        Admin
+
+                    </span>
+
+                <% } %>
+
+            </div>
+
+        </div>
+
+        <!-- FORM -->
+
+        <div class="movie-form-container">
+
+            <form
+                action="/admin/add-movie"
+                method="POST"
+                class="movie-form"
+            >
+
+                <!-- TITLE -->
+
+                <div class="form-group">
+
+                    <label>
+
+                        Movie Title
+
+                    </label>
+
+                    <input
+                        type="text"
+                        name="title"
+                        placeholder="Enter movie title"
+                        required
+                    >
+
+                </div>
+
+                <!-- DESCRIPTION -->
+
+                <div class="form-group">
+
+                    <label>
+
+                        Description
+
+                    </label>
+
+                    <textarea
+                        name="description"
+                        placeholder="Movie description..."
+                        rows="5"
+                    ></textarea>
+
+                </div>
+
+                <!-- CATEGORY -->
+
+                <div class="form-group">
+
+                    <label>
+
+                        Category
+
+                    </label>
+
+                    <select name="category_id">
+
+                        <% categories.forEach(category => { %>
+
+                            <option
+                                value="<%= category.id %>"
+                            >
+
+                                <%= category.name %>
+
+                            </option>
+
+                        <% }) %>
+
+                    </select>
+
+                </div>
+
+                <!-- THUMBNAIL -->
+
+                <div class="form-group">
+
+                    <label>
+
+                        Poster URL
+
+                    </label>
+
+                    <input
+                        type="text"
+                        name="thumbnail"
+                        id="thumbnailInput"
+                        placeholder="https://..."
+                        required
+                    >
+
+                </div>
+
+                <!-- BANNER -->
+
+                <div class="form-group">
+
+                    <label>
+
+                        Banner URL
+
+                    </label>
+
+                    <input
+                        type="text"
+                        name="banner"
+                        placeholder="https://..."
+                        required
+                    >
+
+                </div>
+
+                <!-- VIDEO -->
+
+                <div class="form-group">
+
+                    <label>
+
+                        Youtube Embed URL
+
+                    </label>
+
+                    <input
+                        type="text"
+                        name="video"
+                        placeholder="https://www.youtube.com/embed/..."
+                        required
+                    >
+
+                </div>
+
+                <!-- TRENDING -->
+
+                <div class="form-group">
+
+                    <label>
+
+                        Trending Rank (1-10)
+
+                    </label>
+
+                    <input
+                        type="number"
+                        name="trending_rank"
+                        min="0"
+                        max="10"
+                        value="0"
+                    >
+
+                </div>
+
+                <!-- BUTTON -->
+
+                <button
+                    type="submit"
+                    class="submit-btn"
+                >
+
+                    <i class="fa fa-plus"></i>
+
+                    Add Movie
+
+                </button>
+
+            </form>
+
+            <!-- PREVIEW -->
+
+            <div class="poster-preview">
+
+                <h3>
+
+                    Poster Preview
+
+                </h3>
+
+                <img
+                    id="previewImage"
+                    src="https://via.placeholder.com/300x450?text=Movie+Poster"
+                >
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- PREVIEW SCRIPT -->
+
+<script>
+
+const thumbnailInput =
+document.getElementById("thumbnailInput");
+
+const previewImage =
+document.getElementById("previewImage");
+
+thumbnailInput.addEventListener(
+    "input",
+    () => {
+
+        previewImage.src =
+        thumbnailInput.value;
+
+    }
+);
+
+</script>
+
+</body>
+
+</html>

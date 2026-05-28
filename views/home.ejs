@@ -1,0 +1,131 @@
+<%- include("partials/header") %>
+
+<!-- HERO -->
+
+<% if(movies.length > 0){ %>
+
+<section class="hero">
+
+    <div class="hero-overlay"></div>
+
+    <img
+        src="<%= movies[0].banner %>"
+        class="hero-image"
+    >
+
+    <div class="hero-content">
+
+        <h1>
+            <%= movies[0].title %>
+        </h1>
+
+        <p>
+            <%= movies[0].description %>
+        </p>
+
+        <a
+            href="/movie/<%= movies[0].id %>"
+            class="play-btn"
+        >
+            ▶ Play
+        </a>
+
+    </div>
+
+</section>
+
+<% } %>
+
+<!-- TRENDING CHỈ HIỆN Ở HOME -->
+
+<% if(!category){ %>
+
+<section class="movie-section">
+
+    <h2>
+        Hiện đang thịnh hành
+    </h2>
+
+    <div class="top10-slider">
+
+        <% trendingMovies.forEach((movie,index) => { %>
+
+            <div class="top10-card">
+
+                <div class="top-number">
+
+                    <%= index + 1 %>
+
+                </div>
+
+                <a href="/movie/<%= movie.id %>">
+
+                    <img
+                        src="<%= movie.thumbnail %>"
+                    >
+
+                </a>
+
+            </div>
+
+        <% }) %>
+
+    </div>
+
+</section>
+
+<% } %>
+
+<!-- MOVIES -->
+
+<section class="movie-section">
+
+    <h2>
+
+        <%= category || "All Movies" %>
+
+    </h2>
+
+    <div class="movie-grid">
+
+        <% movies.forEach(movie => { %>
+
+            <div class="grid-card">
+
+                <img
+                    src="<%= movie.thumbnail %>"
+                >
+
+                <div class="grid-info">
+
+                    <h3>
+
+                        <%= movie.title %>
+
+                    </h3>
+
+                    <p>
+
+                        <%= movie.category_name %>
+
+                    </p>
+
+                    <a
+                        href="/movie/<%= movie.id %>"
+                    >
+
+                        ▶ Watch
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        <% }) %>
+
+    </div>
+
+</section>
+
+<%- include("partials/footer") %>
