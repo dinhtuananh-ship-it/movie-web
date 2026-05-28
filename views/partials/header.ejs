@@ -62,17 +62,37 @@
 
     <div class="right-nav">
 
-        <div class="search-box">
+        <form
+    action="/"
+    method="GET"
+    class="search-form"
+>
 
-            <i class="fa fa-search"></i>
+    <% if(category){ %>
 
-            <input
-                type="text"
-                id="searchInput"
-                placeholder="Search movies..."
-            >
+        <input
+            type="hidden"
+            name="category"
+            value="<%= category %>"
+        >
 
-        </div>
+    <% } %>
+
+    <input
+        type="text"
+        name="search"
+        placeholder="Search movies..."
+        autocomplete="off"
+        value="<%= search || '' %>"
+    >
+
+    <button type="submit">
+
+        <i class="fa fa-search"></i>
+
+    </button>
+
+</form>
 
         <% if(user){ %>
 

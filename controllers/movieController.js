@@ -1,12 +1,14 @@
 const db = require("../config/db");
 
 /* =========================
-   HOME PAGE
+   HOME PAGE + SEARCH
 ========================= */
 
 exports.home = (req, res) => {
 
     const category = req.query.category;
+
+    const search = req.query.search;
 
     let sql = `
         SELECT
@@ -17,15 +19,42 @@ exports.home = (req, res) => {
         ON movies.category_id = categories.id
     `;
 
+    let conditions = [];
+
     let values = [];
+
+    /* CATEGORY */
 
     if(category){
 
-        sql += `
-            WHERE categories.name=?
-        `;
+        conditions.push(
+            "categories.name=?"
+        );
 
         values.push(category);
+
+    }
+
+    /* SEARCH */
+
+    if(search){
+
+        conditions.push(
+            "movies.title LIKE ?"
+        );
+
+        values.push(`%${search}%`);
+
+    }
+
+    /* WHERE */
+
+    if(conditions.length > 0){
+
+        sql += `
+            WHERE
+            ${conditions.join(" AND ")}
+        `;
 
     }
 
@@ -38,6 +67,12 @@ exports.home = (req, res) => {
         values,
         (err, movies) => {
 
+            if(err){
+
+                console.log(err);
+
+            }
+
             db.query(
                 `
                 SELECT *
@@ -49,19 +84,31 @@ exports.home = (req, res) => {
                 (err, trendingMovies) => {
 
                     db.query(
-                        "SELECT * FROM categories",
+                        `
+                        SELECT *
+                        FROM categories
+                        `,
                         (err, categories) => {
 
-                            res.render("home", {
+                            res.render(
+                                "home",
+                                {
 
-                                movies,
-                                trendingMovies,
-                                categories,
-                                category,
-                                user:
-                                req.session.user || null
+                                    movies,
 
-                            });
+                                    trendingMovies,
+
+                                    categories,
+
+                                    category,
+
+                                    search,
+
+                                    user:
+                                    req.session.user || null
+
+                                }
+                            );
 
                         }
                     );
@@ -96,17 +143,25 @@ exports.movieDetail = (req, res) => {
         (err, result) => {
 
             db.query(
-                "SELECT * FROM categories",
+                `
+                SELECT *
+                FROM categories
+                `,
                 (err, categories) => {
 
-                    res.render("movie", {
+                    res.render(
+                        "movie",
+                        {
 
-                        movie: result[0],
-                        categories,
-                        user:
-                        req.session.user || null
+                            movie: result[0],
 
-                    });
+                            categories,
+
+                            user:
+                            req.session.user || null
+
+                        }
+                    );
 
                 }
             );
