@@ -1251,3 +1251,168 @@ table td{
 .nav-links a:hover{
     color:red;
 }
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar{
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100%;
+
+    height:80px;
+
+    background:
+    rgba(0,0,0,0.95);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:0 50px;
+
+    z-index:999;
+
+    box-sizing:border-box;
+}
+
+/* LOGO */
+
+.logo{
+    color:red;
+
+    font-size:30px;
+
+    font-weight:bold;
+
+    text-decoration:none;
+}
+
+/* MENU */
+
+.nav-links{
+    display:flex;
+
+    align-items:center;
+
+    gap:35px;
+
+    margin-left:50px;
+
+    flex:1;
+}
+
+/* LINKS */
+
+.nav-links a{
+    color:white;
+
+    text-decoration:none;
+
+    font-size:18px;
+
+    font-weight:500;
+
+    transition:0.3s;
+}
+
+.nav-links a:hover{
+    color:red;
+}
+
+/* RIGHT SIDE */
+
+.nav-right{
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+}
+
+/* SEARCH */
+
+.search-form{
+    display:flex;
+
+    align-items:center;
+
+    background:#1f1f1f;
+
+    border-radius:30px;
+
+    overflow:hidden;
+}
+
+.search-form input{
+    width:220px;
+
+    padding:12px 18px;
+
+    border:none;
+
+    outline:none;
+
+    background:none;
+
+    color:white;
+
+    font-size:15px;
+}
+
+.search-form button{
+    border:none;
+
+    background:red;
+
+    color:white;
+
+    padding:12px 18px;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+.search-form button:hover{
+    background:#cc0000;
+}
+
+/* BUTTON */
+
+.nav-btn{
+    background:red;
+
+    color:white;
+
+    padding:12px 20px;
+
+    border-radius:6px;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    transition:0.3s;
+}
+
+.nav-btn:hover{
+    background:#cc0000;
+}
+
+/* BODY FIX */
+
+body{
+    background:#0f0f0f;
+
+    margin:0;
+
+    padding-top:80px;
+
+    font-family:Arial;
+}

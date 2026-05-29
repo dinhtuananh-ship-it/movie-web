@@ -10,7 +10,7 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Movie Website</title>
+    <title>MOVIEFLIX</title>
 
     <link
         rel="stylesheet"
@@ -47,7 +47,7 @@
 
         <a href="/">Home</a>
 
-        <% if(categories){ %>
+        <% if(typeof categories !== 'undefined' && categories){ %>
 
             <% categories.forEach(category => { %>
 
@@ -65,38 +65,88 @@
 
     </div>
 
-    <!-- SEARCH -->
+    <!-- RIGHT SIDE -->
 
-    <form
-        action="/"
-        method="GET"
-        class="search-form"
-    >
+    <div class="nav-right">
 
-        <% if(typeof category !== 'undefined' && category){ %>
+        <!-- SEARCH -->
+
+        <form
+            action="/"
+            method="GET"
+            class="search-form"
+        >
+
+            <% if(typeof category !== 'undefined' && category){ %>
+
+                <input
+                    type="hidden"
+                    name="category"
+                    value="<%= category %>"
+                >
+
+            <% } %>
 
             <input
-                type="hidden"
-                name="category"
-                value="<%= category %>"
+                type="text"
+                name="search"
+                placeholder="Search movies..."
+                autocomplete="off"
+                value="<%= typeof search !== 'undefined' ? search : '' %>"
             >
+
+            <button type="submit">
+
+                <i class="fa fa-search"></i>
+
+            </button>
+
+        </form>
+
+        <!-- USER -->
+
+        <% if(user){ %>
+
+            <a
+                href="/admin"
+                class="nav-btn"
+            >
+
+                Admin
+
+            </a>
+
+            <a
+                href="/logout"
+                class="nav-btn"
+            >
+
+                Logout
+
+            </a>
+
+        <% } else { %>
+
+            <a
+                href="/login"
+                class="nav-btn"
+            >
+
+                Login
+
+            </a>
+
+            <a
+                href="/register"
+                class="nav-btn"
+            >
+
+                Register
+
+            </a>
 
         <% } %>
 
-        <input
-            type="text"
-            name="search"
-            placeholder="Search movies..."
-            autocomplete="off"
-            value="<%= typeof search !== 'undefined' ? search : '' %>"
-        >
-
-        <button type="submit">
-
-            <i class="fa fa-search"></i>
-
-        </button>
-
-    </form>
+    </div>
 
 </nav>
