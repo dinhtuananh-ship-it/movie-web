@@ -1067,3 +1067,160 @@ table td{
 
     cursor:pointer;
 }
+/* =========================
+   HERO SLIDER
+========================= */
+
+.hero-slider{
+    position:relative;
+
+    height:90vh;
+
+    overflow:hidden;
+}
+
+/* SLIDE */
+
+.hero-slide{
+    position:absolute;
+
+    width:100%;
+    height:100%;
+
+    opacity:0;
+
+    transition:1s ease;
+}
+
+.hero-slide.active{
+    opacity:1;
+    z-index:2;
+}
+
+/* IMAGE */
+
+.hero-image{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+}
+
+/* OVERLAY */
+
+.hero-overlay{
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    background:
+    linear-gradient(
+        to top,
+        #0f0f0f 5%,
+        rgba(0,0,0,0.4) 40%,
+        rgba(0,0,0,0.3) 100%
+    );
+}
+
+/* CONTENT */
+
+.hero-content{
+    position:absolute;
+
+    bottom:120px;
+    left:60px;
+
+    max-width:600px;
+
+    z-index:5;
+}
+
+.hero-content h1{
+    font-size:70px;
+
+    margin-bottom:20px;
+}
+
+.hero-content p{
+    font-size:18px;
+
+    color:#ddd;
+
+    line-height:1.6;
+
+    margin-bottom:30px;
+}
+
+/* BUTTON */
+
+.hero-buttons{
+    display:flex;
+    gap:15px;
+}
+
+.play-btn{
+    background:white;
+    color:black;
+
+    padding:14px 30px;
+
+    border-radius:6px;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    transition:0.3s;
+}
+
+.play-btn:hover{
+    background:#ddd;
+}
+
+/* CONTROLS */
+
+.hero-prev,
+.hero-next{
+    position:absolute;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    z-index:10;
+
+    background:
+    rgba(0,0,0,0.5);
+
+    border:none;
+
+    color:white;
+
+    width:50px;
+    height:50px;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    font-size:24px;
+
+    transition:0.3s;
+}
+
+.hero-prev:hover,
+.hero-next:hover{
+    background:red;
+}
+
+.hero-prev{
+    left:20px;
+}
+
+.hero-next{
+    right:20px;
+}

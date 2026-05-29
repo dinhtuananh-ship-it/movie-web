@@ -1,40 +1,82 @@
 <%- include("partials/header") %>
 
-<!-- HERO -->
+<!-- HERO SLIDER -->
 
-<% if(movies.length > 0){ %>
+<section class="hero-slider">
 
-<section class="hero">
+    <% movies.slice(0,5).forEach((movie,index) => { %>
 
-    <div class="hero-overlay"></div>
+        <div
+            class="hero-slide <%= index === 0 ? 'active' : '' %>"
+        >
 
-    <img
-        src="<%= movies[0].banner %>"
-        class="hero-image"
+            <!-- BACKGROUND -->
+
+            <img
+                src="<%= movie.banner %>"
+                class="hero-image"
+            >
+
+            <!-- OVERLAY -->
+
+            <div class="hero-overlay"></div>
+
+            <!-- CONTENT -->
+
+            <div class="hero-content">
+
+                <h1>
+
+                    <%= movie.title %>
+
+                </h1>
+
+                <p>
+
+                    <%= movie.description %>
+
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a
+                        href="/movie/<%= movie.id %>"
+                        class="play-btn"
+                    >
+
+                        ▶ Play
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    <% }) %>
+
+    <!-- CONTROLS -->
+
+    <button
+        class="hero-prev"
+        onclick="prevSlide()"
     >
 
-    <div class="hero-content">
+        ❮
 
-        <h1>
-            <%= movies[0].title %>
-        </h1>
+    </button>
 
-        <p>
-            <%= movies[0].description %>
-        </p>
+    <button
+        class="hero-next"
+        onclick="nextSlide()"
+    >
 
-        <a
-            href="/movie/<%= movies[0].id %>"
-            class="play-btn"
-        >
-            ▶ Play
-        </a>
+        ❯
 
-    </div>
+    </button>
 
 </section>
-
-<% } %>
 
 <!-- TRENDING CHỈ HIỆN Ở HOME -->
 
@@ -127,5 +169,67 @@
     </div>
 
 </section>
+<script>
 
+const slides =
+document.querySelectorAll(".hero-slide");
+
+let currentSlide = 0;
+
+/* SHOW SLIDE */
+
+function showSlide(index){
+
+    slides.forEach(slide => {
+
+        slide.classList.remove("active");
+
+    });
+
+    slides[index].classList.add("active");
+
+}
+
+/* NEXT */
+
+function nextSlide(){
+
+    currentSlide++;
+
+    if(currentSlide >= slides.length){
+
+        currentSlide = 0;
+
+    }
+
+    showSlide(currentSlide);
+
+}
+
+/* PREV */
+
+function prevSlide(){
+
+    currentSlide--;
+
+    if(currentSlide < 0){
+
+        currentSlide =
+        slides.length - 1;
+
+    }
+
+    showSlide(currentSlide);
+
+}
+
+/* AUTOPLAY */
+
+setInterval(() => {
+
+    nextSlide();
+
+}, 5000);
+
+</script>
 <%- include("partials/footer") %>
