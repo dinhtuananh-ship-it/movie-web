@@ -1224,3 +1224,30 @@ table td{
 .hero-next{
     right:20px;
 }
+/* =========================
+   NAVBAR MENU
+========================= */
+
+.nav-links{
+    display:flex;
+
+    align-items:center;
+
+    gap:35px;
+}
+
+/* LINK */
+
+.nav-links a{
+    color:white;
+
+    text-decoration:none;
+
+    font-size:18px;
+
+    transition:0.3s;
+}
+
+.nav-links a:hover{
+    color:red;
+}
